@@ -14,6 +14,16 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+
+# A list of paths with which Django will expect to find static files that can be served
+STATICFILES_DIRS = [STATIC_DIR, ]
+
+# Used by Django to set up media file hosting
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +36,6 @@ SECRET_KEY = 'ob=i^2(7!^#0fna0e0)6dsxtae1r0v7niy9$hu2+rpto59xz5='
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -55,7 +64,7 @@ ROOT_URLCONF = 'tango_with_django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR, ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
